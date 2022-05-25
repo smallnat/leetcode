@@ -22,7 +22,7 @@ public class Main {
         Solution solution = new Solution();
         for (CaseBase<Param, Boolean> aCase : cases) {
             Param param = aCase.getParams();
-            Boolean result = solution.isPalindrome(param.getX());
+            Boolean result = solution.isMatch("", "");
             String message = "aCase=" + aCase.toString() + "\nresult=" + result;
             Assert.isTrue(aCase.getResult().equals(result), message);
         }

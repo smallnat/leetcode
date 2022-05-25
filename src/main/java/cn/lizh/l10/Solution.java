@@ -15,9 +15,11 @@ public class Solution {
                 char beforeCh = p.charAt(i - 1);
                 char afterCh = p.charAt(i + 1); // 是否后面还有字符，需要判断
             }
-            for (int j = 0; j < s.length(); j++) {
+//            for (int j = 0; j < s.length(); j++) {
+//
+//            }
 
-            }
         }
+        return true;
     }
 }
