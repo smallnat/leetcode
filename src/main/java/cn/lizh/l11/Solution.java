@@ -1,4 +1,4 @@
-package cn.lizh.l10;
+package cn.lizh.l11;
 
 // * 表示0个或者多个，关键处理0个的情况。也就意味着顺序处理过程中，需要将a*左右整体考虑，而不能先匹配a，再处理*。
 public class Solution {
@@ -13,26 +13,12 @@ public class Solution {
             } else if (ch == '*') {
                 // 匹配0-n个前面的字符，由题目保证 p.charAt(i - 1) 不会越界，可以是*么？
                 // 假设规则表达式是精简的，不会出现 a*ada 这种 -> aa*da
-                // 但会出现.*aada   adfaaaada
+                // 但会出现.*ada
                 char beforeCh = p.charAt(i - 1);
                 if (beforeCh == '.') {
                     // 可以匹配任何字符
-                    // 后面再有字符，从哪里开始匹配？*** 丢多少个字符？
-                    if (i + 1 < p.length()) {
-                        char afterCh = p.charAt(i + 1);
-                        // s可以丢弃任意个字符
-                        //
-                        while (s.charAt(j) != afterCh) {
-                            j++;
-                        }
-                        // 字符相同的情况
-                        // 因为前面是.*，所以后面的匹配可以和任意右子串
-                        // todo . 这里有点复杂
-
-                    } else {
-                        // 后面没字符了。
-                        return true;
-                    }
+                    // 后面再有字符，从哪里开始匹配？***
+                    return true;
                 } else {
                     while (j < s.length() && s.charAt(j) == beforeCh) {
                         j++;
