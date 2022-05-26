@@ -1,4 +1,4 @@
-package cn.lizh.l11;
+package cn.lizh.l12;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Param {
-    private int[] x;
+    private int x;
 }

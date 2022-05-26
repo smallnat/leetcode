@@ -8,7 +8,7 @@ public class Solution {
         for (int i = 0; i < p.length(); i++) {
             char ch = p.charAt(i);
             if (ch == '.') {
-                // 匹配单个任意字符
+                // 匹配单个任意字符...这里不能直接，还要看下一个字符是否为* todo
                 j++;
             } else if (ch == '*') {
                 // 匹配0-n个前面的字符，由题目保证 p.charAt(i - 1) 不会越界，可以是*么？
@@ -22,13 +22,14 @@ public class Solution {
                         char afterCh = p.charAt(i + 1);
                         // s可以丢弃任意个字符
                         //
-                        while (s.charAt(j) != afterCh) {
+                        while (s.charAt(j) != afterCh) { // 先丢掉不同的
                             j++;
                         }
                         // 字符相同的情况
                         // 因为前面是.*，所以后面的匹配可以和任意右子串
                         // todo . 这里有点复杂
-
+                        // 这里可以选择丢掉，也可以选择不丢
+                        return isMatch(p.substring(i - 1), s.substring(j));
                     } else {
                         // 后面没字符了。
                         return true;
@@ -52,5 +53,36 @@ public class Solution {
             }
         }
         return j >= s.length();
+    }
+
+    // 状态转换
+    // 由子字符串的状态得到
+    public boolean isMatch2(String s, String p) {
+        int sn = s.length() - 1;
+        int pn = p.length() - 1;
+        if (pn == -1 && sn == -1) {
+            return true;
+        }
+        if (sn == -1 || pn == -1) {
+            return false;
+        }
+        if (p.charAt(pn) == '*') {
+            if (matchs(s.charAt(sn), p.charAt(pn - 1))) {
+                return isMatch2(s, p.substring(0, pn - 1)) || isMatch2(s.substring(0, sn), p);
+            } else {
+                return isMatch2(s, p.substring(0, pn - 1));
+            }
+        } else {
+            if (matchs(p.charAt(pn), s.charAt(sn))) {
+                return isMatch2(s.substring(0, sn), p.substring(0, pn));
+            } else {
+                return false;
+            }
+        }
+    }
+
+    // p只能为字母或者.
+    private boolean matchs(char s, char p) {
+        return s == p || p == '.';
     }
 }
