@@ -19,6 +19,10 @@ public class Main {
         cases.add(new CaseBase<Param, String>(new Param(7), "VII"));
         cases.add(new CaseBase<Param, String>(new Param(8), "VIII"));
         cases.add(new CaseBase<Param, String>(new Param(9), "IX"));
+        cases.add(new CaseBase<Param, String>(new Param(9), "IX"));
+        cases.add(new CaseBase<Param, String>(new Param(1994), "MCMXCIV"));
+        cases.add(new CaseBase<Param, String>(new Param(20), "XX"));
+        cases.add(new CaseBase<Param, String>(new Param(60), "LX"));
     }
 
 
